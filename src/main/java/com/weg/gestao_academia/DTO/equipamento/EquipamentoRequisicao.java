@@ -5,18 +5,17 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
-public class EquipamentoRequisicao {
+
+public record EquipamentoRequisicao (
 
 
-    private String nome;
+    String nome,
 
-    private String marca;
+    String marca,
 
-    private Long pesoMaximo;
+    Long pesoMaximo,
 
-    private LocalDateTime dataCompra;
+    LocalDateTime dataCompra,
 
-    private String status;
-}
+    String status
+){}
