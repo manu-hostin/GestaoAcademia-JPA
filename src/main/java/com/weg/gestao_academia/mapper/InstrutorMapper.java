@@ -6,31 +6,44 @@ import com.weg.gestao_academia.DTO.instrutor.InstrutorRequisicao;
 import com.weg.gestao_academia.DTO.instrutor.InstrutorResposta;
 import com.weg.gestao_academia.model.Equipamento;
 import com.weg.gestao_academia.model.Instrutor;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
 public class InstrutorMapper {
 
-    public static Instrutor paraEntidade (InstrutorRequisicao dto) {
+    public Instrutor paraEntidade (InstrutorRequisicao dto) {
         Instrutor instrutor = new Instrutor();
 
-        instrutor.setNome(dto.getNome());
-        instrutor.setEmail(dto.getEmail());
-        instrutor.setTurno(dto.getTurno());
-        instrutor.setEspecialidade(dto.getEspecialidade());
-        instrutor.setSalario(dto.getSalario());
+        instrutor.setNome(dto.nome());
+        instrutor.setEmail(dto.email());
+        instrutor.setTurno(dto.turno());
+        instrutor.setEspecialidade(dto.especialidade());
+        instrutor.setSalario(dto.salario());
 
         return instrutor;
     }
-    public static InstrutorResposta paraResposta (Instrutor instrutor){
-        InstrutorResposta resposta = new InstrutorResposta();
+    public InstrutorResposta paraResposta (Instrutor instrutor){
+        return new InstrutorResposta(
 
-        resposta.setId(instrutor.getId());
-        resposta.setNome(instrutor.getNome());
-        resposta.setEmail(instrutor.getEmail());
-        resposta.setTurno(instrutor.getTurno());
-        resposta.setSalario(instrutor.getSalario());
-        resposta.setEspecialidade(instrutor.getEspecialidade());
+            instrutor.getId(),
+            instrutor.getNome(),
+            instrutor.getEmail(),
+            instrutor.getTurno(),
+            instrutor.getSalario(),
+            instrutor.getEspecialidade()
 
-        return resposta;
+        );
+    }
+    public List<InstrutorResposta> paraListar (List<Instrutor> instrutores) {
+        List<InstrutorResposta> lista = new ArrayList<>();
+
+        for (Instrutor instrutor : instrutores){
+            lista.add(paraResposta(instrutor));
+        }
+        return lista;
     }
 
 }

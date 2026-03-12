@@ -3,19 +3,17 @@ package com.weg.gestao_academia.DTO.instrutor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class InstrutorResposta {
+public record InstrutorResposta (
 
-    private int id;
+    int id,
 
-    private String nome;
+    String nome,
 
-    private String email;
+    String email,
 
-    private String especialidade;
+    String especialidade,
 
-    private Double salario;
+    Double salario,
 
-    private String turno;
-}
+    String turno
+){}

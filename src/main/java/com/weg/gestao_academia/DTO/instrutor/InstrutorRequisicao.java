@@ -1,21 +1,19 @@
 package com.weg.gestao_academia.DTO.instrutor;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class InstrutorRequisicao {
 
-    private int Id;
+public record InstrutorRequisicao (
 
-    private String nome;
+    String nome,
 
-    private String email;
+    String email,
 
-    private String especialidade;
+    String especialidade,
 
-    private Double salario;
+    Double salario,
 
-    private String turno;
-}
+    String turno
+){}
