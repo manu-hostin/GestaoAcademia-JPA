@@ -5,19 +5,18 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-public class AulaResposta {
 
-    private int id;
+public record AulaResposta (
 
-    private String titulo;
+        int id,
 
-    private String nivel;
+        String titulo,
 
-    private int sala;
+        String nivel,
 
-    private LocalDateTime diaHora;
+        int sala,
 
-    private Double duracao;
-}
+        LocalDateTime diaHora,
+
+        Double duracao
+){}

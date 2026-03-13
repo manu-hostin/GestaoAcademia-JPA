@@ -1,21 +1,28 @@
 package com.weg.gestao_academia.DTO.aula;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-public class AulaRequisicao {
 
-    private String titulo;
+public record AulaRequisicao (
 
-    private String nivel;
+        @NotBlank(message = "Digite um título")
+        String titulo,
 
-    private int sala;
+        @NotBlank(message = "Digite um nível")
+        String nivel,
 
-    private LocalDateTime diaHora;
+        @Positive
+        int sala,
 
-    private Double duracao;
-}
+        @NotNull(message = "Por favor, digite uma data")
+        LocalDateTime diaHora,
+
+        @NotNull(message = "Digite a duração da aula")
+        Double duracao
+){}

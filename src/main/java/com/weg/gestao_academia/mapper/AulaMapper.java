@@ -6,30 +6,44 @@ import com.weg.gestao_academia.DTO.aula.AulaRequisicao;
 import com.weg.gestao_academia.DTO.aula.AulaResposta;
 import com.weg.gestao_academia.model.Aluno;
 import com.weg.gestao_academia.model.Aula;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
 public class AulaMapper {
 
-    public static Aula paraEntidade (AulaRequisicao dto) {
+    public Aula paraEntidade (AulaRequisicao dto) {
         Aula aula = new Aula();
 
-        aula.setSala(dto.getSala());
-        aula.setNivel(dto.getNivel());
-        aula.setTitulo(dto.getTitulo());
-        aula.setDuracao(dto.getDuracao());
-        aula.setDiaHora(dto.getDiaHora());
+        aula.setSala(dto.sala());
+        aula.setNivel(dto.nivel());
+        aula.setTitulo(dto.titulo());
+        aula.setDuracao(dto.duracao());
+        aula.setDiaHora(dto.diaHora());
 
         return aula;
     }
-    public static AulaResposta paraResposta (Aula aula){
-        AulaResposta resposta = new AulaResposta();
+    public AulaResposta paraResposta (Aula aula){
+        return new AulaResposta(
 
-        resposta.setId(aula.getId());
-        resposta.setSala(aula.getSala());
-        resposta.setTitulo(aula.getTitulo());
-        resposta.setNivel(aula.getNivel());
-        resposta.setDiaHora(aula.getDiaHora());
-        resposta.setDuracao(aula.getDuracao());
+                aula.getId(),
+                aula.getTitulo(),
+                aula.getNivel(),
+                aula.getSala(),
+                aula.getDiaHora(),
+                aula.getDuracao()
 
-        return resposta;
+        );
+    }
+
+    public List<AulaResposta> paraListar(List<Aula> aulas) {
+        List<AulaResposta> lista = new ArrayList<>();
+
+        for (Aula aula : aulas){
+            lista.add(paraResposta(aula));
+        }
+        return lista;
     }
 }
